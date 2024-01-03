@@ -3,26 +3,30 @@
 [https://minhpham.design/]
 
 #### 설치해야할 라이브러리
-npm i sass    
-npm i gsap   
-npm i framer-motion   
+`npm i sass`  
+`npm i gsap`   
+`npm i framer-motion`   
 
 ## 사용한 효과 (css)
 
-mask 효과
+#### mask 효과
 
 클리핑마스크 mask-image: url('../public/mask.svg');   
 마스크 위치값 mask-position: 50%;   
 마스크 크기 mask-size: 50px;   
 mask-repeat: no-repeat;   
 
-움직이게 하는 효과 적용   
+#### 움직이게 하는 효과 적용   
+```js
 animate={{   
     WebkitMaskPosition: `${x}px ${y}px`,   
-}}   
+}} 
+```  
 
-조금 더 스무스하게 적용   
+#### 조금 더 스무스하게 적용   
+``` js
 transition={{ type: "tween", ease: "backOut", duration: 0.5 }}   
+```
       
 app.js
 ```js
@@ -36,8 +40,10 @@ app.js
             "어려움은 극복해 나가는 것이다."<br />라는 말을 항상 기억합니다.
           </motion.div>
 ```
-마우스 가운데 배치   
+#### 마우스 가운데 배치   
+```
 WebkitMaskPosition: `${x - size / 2}px ${y - size / 2}px`,   
+```
 
 ```js
           <motion.div
