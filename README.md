@@ -1,70 +1,68 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 사이트 보며 효과 공부하기 📚
+[https://minhpham.design/]
 
-## Available Scripts
+#### 설치해야할 라이브러리
+npm i sass    
+npm i gsap   
+npm i framer-motion   
 
-In the project directory, you can run:
+## 사용한 효과 (css)
 
-### `npm start`
+mask 효과
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+클리핑마스크 mask-image: url('../public/mask.svg');   
+마스크 위치값 mask-position: 50%;   
+마스크 크기 mask-size: 50px;   
+mask-repeat: no-repeat;   
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+움직이게 하는 효과 적용   
+animate={{   
+    WebkitMaskPosition: `${x}px ${y}px`,   
+}}   
 
-### `npm test`
+조금 더 스무스하게 적용   
+transition={{ type: "tween", ease: "backOut", duration: 0.5 }}   
+      
+app.js
+```js
+<motion.div
+            className='project__mask'
+            animate={{
+              WebkitMaskPosition: `${x}px ${y}px`,
+            }}
+            transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
+          >
+            "어려움은 극복해 나가는 것이다."<br />라는 말을 항상 기억합니다.
+          </motion.div>
+```
+마우스 가운데 배치   
+WebkitMaskPosition: `${x - size / 2}px ${y - size / 2}px`,   
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+          <motion.div
+            className='project__mask'
+            animate={{
+              WebkitMaskPosition: `${x - size / 2}px ${y - size / 2}px`,
+              WebkitMaskSize: `${size}px`,
+            }}
+            transition={{ type: "tween", ease: "backOut", duration: 0.5 }}
+          >
+            <p onMouseEnter={() => { setIsHovered(true) }}
+              onMouseLeave={() => { setIsHovered(false) }}>"어려움은 극복해 나가는 것이다."<br />라는 말을 항상 <span>기억합니다.</span> </p>
+          </motion.div>
+```
 
-### `npm run build`
+마우스 오버시 사이즈 커지는 효과 적용   
+```
+  const [isHovered, setIsHovered] = useState(false);
+  const { x, y } = useMouse();
+  const size = isHovered ? 500 : 50;
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ <p onMouseEnter={() => { setIsHovered(true) }}
+    onMouseLeave={() => { setIsHovered(false) }}>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+useRef = id값 가져오는 것.
+const section2Ref = useRef(null);
